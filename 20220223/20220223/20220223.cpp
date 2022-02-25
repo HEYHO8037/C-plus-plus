@@ -14,15 +14,17 @@ int main(void)
 	int iLose = 0;
 	int iDraw = 0;
 
-
+	random_device randomDevice;
+	mt19937 random(randomDevice());
+	uniform_int_distribution<int> range(1, 3);
 
 	for (int i = 0; 5 > i; ++i)
 	{
-		srand((unsigned)time(NULL));
-		iRandom = rand() % 3;
+		iRandom = range(random);
 
 		cout << "1. 가위 2. 바위 3. 보 4, 종료" << endl;
 		cin >> iPlayer;
+
 
 		if (iPlayer == 1)
 		{
@@ -30,7 +32,6 @@ int main(void)
 			{
 				cout << "무승부 입니다." << endl;
 				++iDraw;
-
 			}
 			else if (1 == iRandom)
 			{
@@ -49,7 +50,6 @@ int main(void)
 			{
 				cout << "승리 입니다." << endl;
 				++iWin;
-
 			}
 			else if (1 == iRandom)
 			{
@@ -68,7 +68,6 @@ int main(void)
 			{
 				cout << "패배 입니다." << endl;
 				++iLose;
-
 			}
 			else if (1 == iRandom)
 			{
