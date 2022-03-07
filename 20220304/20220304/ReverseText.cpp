@@ -31,5 +31,6 @@ int main(void)
 	cout << inputText << endl;
 
 
+
 	return 0;
 }
