@@ -21,7 +21,8 @@ struct Player
 {
 	int iJob;
 	int iAttack;
-	int iHP;
+	int iCurrent_HP;
+	int iMax_HP;
 };
 
 void Init(Player* player);
@@ -69,28 +70,32 @@ void Init(Player* player)
 		{
 			player->iJob = WARRIOR;
 			player->iAttack = 10;
-			player->iHP = 200;
+			player->iMax_HP = 200;
+			player->iCurrent_HP = 200;
 			break;
 		}
 		else if (iChooseJob == MAGICIAN)
 		{
 			player->iJob = MAGICIAN;
 			player->iAttack = 100;
-			player->iHP = 100;
+			player->iMax_HP = 100;
+			player->iCurrent_HP = 100;
 			break;
 		}
 		else if (iChooseJob == THIEF)
 		{
 			player->iJob = THIEF;
 			player->iAttack = 20;
-			player->iHP = 50;
+			player->iMax_HP = 50;
+			player->iCurrent_HP = 50;
 			break;
 		}
 		else if (iChooseJob == GUNNER)
 		{
 			player->iJob = GUNNER;
 			player->iAttack = 150;
-			player->iHP = 100;
+			player->iMax_HP = 100;
+			player->iCurrent_HP = 100;
 			break;
 		}
 		else if (5 == iChooseJob)
@@ -103,7 +108,6 @@ void Init(Player* player)
 			cout << "다시 입력해주세요" << endl;
 			system("pause");
 		}
-
 	}
 }
 
@@ -180,7 +184,7 @@ int GoDungen(Player* player)
 		cout << "거너";
 	}
 
-	cout << " HP : " << player->iHP << " 공격력 : " << player->iAttack << endl;
+	cout << " HP : " << player->iCurrent_HP << " 공격력 : " << player->iAttack << endl;
 	cout << "=================================================================" << endl;
 	cout << "1. 사냥터, 2. 뒤로가기, 3. 종료" << endl;
 
@@ -190,10 +194,11 @@ int GoDungen(Player* player)
 int SelectMonster(Monster* monster, Player * player)
 {
 	int iSelect = 0;
+
 	while (true)
 	{
 		system("cls");
-		cout << "Player HP : " << player->iHP << " Player Attack : " << player->iAttack << endl;
+		cout << "Player HP : " << player->iCurrent_HP << " Player Attack : " << player->iAttack << endl;
 		cout << "=================================================================" << endl;
 		cout << "1. 초급, 2. 중급, 3. 고급, 4. 뒤로가기" << endl;
 		iSelect = InputText();
@@ -232,12 +237,11 @@ int SelectMonster(Monster* monster, Player * player)
 void RunOrAttack(Monster * monster, Player * player)
 {
 	int iSelect = 0;
-	int iPlayerHP = player->iHP;
 
 	while (true)
 	{
 		system("cls");
-		cout << "Player HP : " << player->iHP << " Player Attack : " << player->iAttack << endl;
+		cout << "Player HP : " << player->iCurrent_HP << " Player Attack : " << player->iAttack << endl;
 		cout << "Monster HP : " << monster->iHP << " Monster Attack : " << monster->iAttack << endl;
 		cout << "=================================================================" << endl;
 		cout << "1. 전투, 2. 도망" << endl;
@@ -256,11 +260,11 @@ void RunOrAttack(Monster * monster, Player * player)
 			continue;
 		}
 
-		if (player->iHP <= 0)
+		if (player->iCurrent_HP <= 0)
 		{
 			system("cls");
 			cout << "플레이어가 사망했습니다." << endl;
-			player->iHP = iPlayerHP;
+			player->iCurrent_HP = player->iMax_HP;
 
 			system("pause");
 			break;
@@ -278,7 +282,7 @@ void RunOrAttack(Monster * monster, Player * player)
 void Attack(Monster * monster, Player * player)
 {
 	system("cls");
-	player->iHP -= monster->iAttack;
+	player->iCurrent_HP -= monster->iAttack;
 	monster->iHP -= player->iAttack;
 	cout << "공격!" << endl;
 	system("pause");
