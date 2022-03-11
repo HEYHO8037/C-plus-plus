@@ -1,3 +1,7 @@
 ﻿  20220310.cpp
+c:\users\haeho\desktop\c & c++\20220310\20220310\20220310.cpp(294): warning C4129: 'h': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+c:\users\haeho\desktop\c & c++\20220310\20220310\20220310.cpp(294): warning C4129: 'D': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+c:\users\haeho\desktop\c & c++\20220310\20220310\20220310.cpp(294): warning C4129: 'C': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+c:\users\haeho\desktop\c & c++\20220310\20220310\20220310.cpp(294): warning C4129: 'S': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
   20220310.vcxproj -> C:\Users\haeho\Desktop\C & C++\20220310\Debug\20220310.exe
   20220310.vcxproj -> C:\Users\haeho\Desktop\C & C++\20220310\Debug\20220310.pdb (Full PDB)
