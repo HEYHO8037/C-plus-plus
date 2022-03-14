@@ -16,10 +16,17 @@ int main(void)
 
 	if (NULL == err && NULL == err2)
 	{
-		for (int i = 0; i < ImageFileByte; ++i)
+		while(true)
 		{
-			fread(&saveImage, sizeof(char), 1, pGetFile);
-			fwrite(&saveImage, sizeof(char), 1, pSetFile);
+			if (!feof(pGetFile))
+			{
+				fread(&saveImage, sizeof(char), 1, pGetFile);
+				fwrite(&saveImage, sizeof(char), 1, pSetFile);
+			}
+			else
+			{
+				break;
+			}
 		}
 
 		cout << "성공! 폴더를 확인하세요" << endl;
