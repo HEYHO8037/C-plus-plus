@@ -11,7 +11,7 @@ int main(void)
 
 	char saveImage;
 
-	errno_t err2 = fopen_s(&pSetFile, "../Data/saveImage.jpg", "ab");
+	errno_t err2 = fopen_s(&pSetFile, "../Data/saveImage.jpg", "wb");
 	errno_t err = fopen_s(&pGetFile, "../Data/Image.jpg", "rb");
 
 	if (NULL == err && NULL == err2)
