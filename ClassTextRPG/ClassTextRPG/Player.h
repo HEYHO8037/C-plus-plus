@@ -11,10 +11,15 @@ enum _tagPlayerClass
 class CPlayer
 {
 private:
-	int m_iAttack = 0;
-	int m_iClass = 0;
-	int m_iMaxHP = 0;
-	int m_iCurrentHP = 0;
+	int m_iAttack;
+	int m_iClass;
+	int m_iMaxHP;
+	int m_iCurrentHP;
+
+public:
+	CPlayer();
+	CPlayer(int _iClass);
+	~CPlayer();
 
 public:
 	int GetHP() const;
@@ -30,7 +35,6 @@ public:
 
 public:
 	void Attack(int _iMonsterAttack);
-	void InitPlayer(int _iInput);
 	void ShowPlayerState();
 	void HealPlayer();
 

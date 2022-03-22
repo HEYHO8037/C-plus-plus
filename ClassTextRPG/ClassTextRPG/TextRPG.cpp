@@ -1,6 +1,17 @@
 #include "stdafx.h"
 #include "TextRPG.h"
 
+CTextRPG::CTextRPG()
+	: m_pPlayer(nullptr),
+	  m_pMonster(nullptr)
+{
+}
+
+CTextRPG::~CTextRPG()
+{
+	Release();
+}
+
 void CTextRPG::ChooseMonster()
 {
 	int iInput = 0;
@@ -8,13 +19,13 @@ void CTextRPG::ChooseMonster()
 	while (true)
 	{
 		system("cls");
-
+		m_pPlayer->ShowPlayerState();
 		cout << "1. 하급, 2. 중급, 3. 상급, 4. 이전" << endl;
 		cin >> iInput;
 
 		if (0 < iInput && iInput < 4)
 		{
-			InitMonster(iInput);
+			m_pMonster = new CMonster(iInput);
 			break;
 		}
 		else if (4 == iInput)
@@ -37,6 +48,8 @@ bool CTextRPG::GoField()
 
 	while (true)
 	{
+		system("cls");
+		m_pPlayer->ShowPlayerState();
 		cout << "1. 사냥터, 2. 저장, 3. 종료" << endl;
 		cin >> iInput;
 
@@ -48,6 +61,7 @@ bool CTextRPG::GoField()
 		else if (2 == iInput)
 		{
 			SavePlayer();
+			system("pause");
 			continue;
 		}
 		else if (3 == iInput)
@@ -90,7 +104,8 @@ void CTextRPG::Fight()
 		}
 		else if (2 == iInput)
 		{
-			MonsterRelease();
+			delete m_pMonster;
+			m_pMonster = nullptr;
 			break;
 		}
 		else
@@ -116,7 +131,10 @@ bool CTextRPG::AttackCheckHP()
 	{
 		system("cls");
 		cout << "승리하였습니다." << endl;
-		MonsterRelease();
+
+		delete m_pMonster;
+		m_pMonster = nullptr;
+
 		system("pause");
 
 		return 0;
@@ -172,7 +190,7 @@ void CTextRPG::LoadPlayer()
 	}
 }
 
-void CTextRPG::ChoosePlayer()
+void CTextRPG::Init()
 {
 	int iInput = 0;
 
@@ -194,7 +212,7 @@ void CTextRPG::ChoosePlayer()
 		}
 		else if (iInput > 0 && iInput < 4)
 		{
-			InitPlayer(iInput);
+			m_pPlayer = new CPlayer(iInput);
 			break;
 		}
 		else
@@ -204,7 +222,7 @@ void CTextRPG::ChoosePlayer()
 	}
 }
 
-bool CTextRPG::Update()
+void CTextRPG::Update()
 {
 	bool bIsCheck = false;
 
@@ -217,7 +235,7 @@ bool CTextRPG::Update()
 
 		if (!bIsCheck)
 		{
-			return bIsCheck;
+			break;
 		}
 
 		ChooseMonster();
@@ -231,7 +249,7 @@ bool CTextRPG::Update()
 	}
 }
 
-void CTextRPG::AllRelease()
+void CTextRPG::Release()
 {
 	if (m_pMonster)
 	{
@@ -246,54 +264,16 @@ void CTextRPG::AllRelease()
 	}
 }
 
-void CTextRPG::InitPlayer(int _iInput)
-{
-	m_pPlayer = new CPlayer;
-	m_pPlayer->InitPlayer(_iInput);
-}
-
-void CTextRPG::InitMonster(int _iInput)
-{
-	m_pMonster = new CMonster;
-	m_pMonster->InitMonster(_iInput);
-}
-
-void CTextRPG::MonsterRelease()
-{
-	if (m_pMonster)
-	{
-		delete m_pMonster;
-		m_pMonster = nullptr;
-	}
-}
-
-void CTextRPG::PlayerRelease()
-{
-	if (m_pPlayer)
-	{
-		delete m_pPlayer;
-		m_pPlayer = nullptr;
-	}
-}
 
 void CTextRPG::MainFrame()
 {
-	bool bIsCheck = 0;
-
-	ChoosePlayer();
+	Init();
 
 	if (m_pPlayer == nullptr)
 	{
 		return;
 	}
 
-	bIsCheck = Update();
-
-	if (!bIsCheck)
-	{
-		AllRelease();
-		return;
-	}
-
-	AllRelease();
+	Update();
+	Release();
 }

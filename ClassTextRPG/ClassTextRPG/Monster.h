@@ -12,16 +12,20 @@ enum _tagMonsterClass
 class CMonster
 {
 private:
-	int m_iClass = 0;
-	int m_iHP = 0;
-	int m_iAttack = 0;
+	int m_iClass;
+	int m_iHP;
+	int m_iAttack;
+
+public:
+	CMonster();
+	CMonster(int _iClass);
+	~CMonster();
 
 public:
 	int GetHP() const;
 	int GetAttack() const;
 
 public:
-	void InitMonster(int _iInput);
 	void Attack(int _iPlayerAttack);
 	void ShowMonsterState();
 };

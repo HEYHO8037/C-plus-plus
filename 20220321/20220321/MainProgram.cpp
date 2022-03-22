@@ -1,6 +1,18 @@
 #include "stdafx.h"
 #include "MainProgram.h"
 
+CMainProgram::CMainProgram()
+	: m_iCount(0),
+	  m_iMaxCount(0),
+	  m_pStudent(nullptr)
+{
+}
+
+CMainProgram::~CMainProgram()
+{
+	ReleaseStudent();
+}
+
 void CMainProgram::InitStudent(int _iMaxCount)
 {
 	m_iMaxCount = _iMaxCount;
@@ -10,8 +22,11 @@ void CMainProgram::InitStudent(int _iMaxCount)
 
 void CMainProgram::ReleaseStudent()
 {
-	delete[] m_pStudent;
-	m_pStudent = nullptr;
+	if (m_pStudent)
+	{
+		delete[] m_pStudent;
+		m_pStudent = nullptr;
+	}
 }
 
 void CMainProgram::ProgramMain()
@@ -47,7 +62,6 @@ void CMainProgram::ProgramMain()
 		}
 		else if (5 == iInput)
 		{
-			ReleaseStudent();
 			return;
 		}
 		else
@@ -56,8 +70,6 @@ void CMainProgram::ProgramMain()
 			system("pause");
 		}
 	}
-
-	ReleaseStudent();
 }
 
 int CMainProgram::ShowMenu()
@@ -86,10 +98,13 @@ void CMainProgram::InputGrade()
 	{
 		cout << "이름 : ";
 		cin >> cName;
+		
 		cout << "수학 : ";
 		cin >> iMath;
+		
 		cout << "영어 : ";
 		cin >> iEnglish;
+
 		cout << "국어 : ";
 		cin >> iKorean;
 
@@ -109,7 +124,6 @@ void CMainProgram::ShowAllGrade()
 
 	for (int i = 0; m_iCount > i; ++i)
 	{
-
 		cout << m_pStudent[i].GetName() << " : ";
 		cout << "수학 : " << m_pStudent[i].GetMath();
 		cout << " 영어 : " << m_pStudent[i].GetEnglish();
@@ -131,13 +145,13 @@ void CMainProgram::ShowSearchGrade()
 	cout << "검색할 이름 : ";
 	cin >> cSearchName;
 
+
 	for (int i = 0; m_iCount > i; ++i)
 	{
 		for (int k = 0; '\0' != m_pStudent[i].GetName()[k]; ++k)
 		{
 			iLength++;
 		}
-
 
 		for (int j = 0; j < iLength; ++j)
 		{
@@ -155,6 +169,7 @@ void CMainProgram::ShowSearchGrade()
 		else
 		{
 			iIsEqual = 0;
+			iLength = 0;
 		}
 	}
 
@@ -183,21 +198,22 @@ void CMainProgram::AdditionalGrade()
 	if (iInput > 0)
 	{
 		m_iMaxCount += iInput;
-		CStudent* saveStudent = new CStudent[m_iMaxCount];
+
+		CStudent* pSaveStudent = new CStudent[m_iMaxCount];
 
 		for (int i = 0; i < m_iCount; ++i)
 		{
-			saveStudent[i].SetName(m_pStudent[i].GetName());
-			saveStudent[i].SetEnglish(m_pStudent[i].GetEnglish());
-			saveStudent[i].SetMath(m_pStudent[i].GetMath());
-			saveStudent[i].SetKorean(m_pStudent[i].GetKorean());
-			saveStudent[i].Calculate();
+			pSaveStudent[i].SetName(m_pStudent[i].GetName());
+			pSaveStudent[i].SetEnglish(m_pStudent[i].GetEnglish());
+			pSaveStudent[i].SetMath(m_pStudent[i].GetMath());
+			pSaveStudent[i].SetKorean(m_pStudent[i].GetKorean());
+			pSaveStudent[i].Calculate();
 		}
 
 		ReleaseStudent();
 
-		m_pStudent = saveStudent;
-		saveStudent = nullptr;
+		m_pStudent = pSaveStudent;
+		pSaveStudent = nullptr;
 
 		cout << "추가 완료했습니다." << endl;
 	}

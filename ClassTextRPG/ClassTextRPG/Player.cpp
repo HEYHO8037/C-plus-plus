@@ -1,6 +1,45 @@
 #include "stdafx.h"
 #include "Player.h"
 
+CPlayer::CPlayer()
+	: m_iAttack(0),
+	  m_iClass(0),
+	  m_iMaxHP(0),
+	  m_iCurrentHP(0)
+{
+}
+
+CPlayer::CPlayer(int _iClass)
+{
+	switch (_iClass)
+	{
+	case WARRIOR:
+		m_iClass = WARRIOR;
+		m_iAttack = 10;
+		m_iMaxHP = 200;
+		m_iCurrentHP = 200;
+		break;
+
+	case MAGICIAN:
+		m_iClass = MAGICIAN;
+		m_iAttack = 100;
+		m_iMaxHP = 100;
+		m_iCurrentHP = 200;
+		break;
+
+	case THIEF:
+		m_iClass = THIEF;
+		m_iAttack = 20;
+		m_iMaxHP = 50;
+		m_iCurrentHP = 200;
+		break;
+	}
+}
+
+CPlayer::~CPlayer()
+{
+}
+
 int CPlayer::GetHP() const
 {
 	return m_iCurrentHP;
@@ -44,34 +83,6 @@ void CPlayer::SetMaxHP(int _iMaxHP)
 void CPlayer::Attack(int _iMonsterAttack)
 {
 	m_iCurrentHP -= _iMonsterAttack;
-}
-
-void CPlayer::InitPlayer(int _iInput)
-{
-	switch (_iInput)
-	{
-	case WARRIOR:
-		m_iClass = WARRIOR;
-		m_iAttack = 10;
-		m_iMaxHP = 200;
-		m_iCurrentHP = 200;
-		break;
-
-	case MAGICIAN:
-		m_iClass = MAGICIAN;
-		m_iAttack = 100;
-		m_iMaxHP = 100;
-		m_iCurrentHP = 200;
-		break;
-
-	case THIEF:
-		m_iClass = THIEF;
-		m_iAttack = 20;
-		m_iMaxHP = 50;
-		m_iCurrentHP = 200;
-		break;
-	}
-
 }
 
 void CPlayer::ShowPlayerState()

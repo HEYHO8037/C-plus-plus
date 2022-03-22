@@ -4,12 +4,16 @@
 class CStudent
 {
 private:
-	char m_cName[256] = "";
-	int m_iMath = 0;
-	int m_iKorean = 0;
-	int m_iEnglish = 0;
-	int m_iTotal = 0;
-	float m_fAverage = 0.f;
+	char m_cName[256];
+	int m_iMath;
+	int m_iKorean;
+	int m_iEnglish;
+	int m_iTotal;
+	float m_fAverage;
+
+public:
+	CStudent();
+	~CStudent();
 
 public:
 	void SetName(char* _pName);

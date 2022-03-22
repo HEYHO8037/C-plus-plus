@@ -1,6 +1,21 @@
 #include "stdafx.h"
 #include "Student.h"
 
+CStudent::CStudent()
+	: m_cName(""),
+	  m_iKorean(0),
+	  m_iEnglish(0),
+	  m_iMath(0),
+	  m_iTotal(0),
+	  m_fAverage(0.f)
+{
+}
+
+CStudent::~CStudent()
+{
+
+}
+
 void CStudent::SetName(char* _pName)
 {
 	for (int i = 0; _pName[i] != '\0'; ++i)

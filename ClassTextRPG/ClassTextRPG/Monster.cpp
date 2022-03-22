@@ -1,19 +1,16 @@
 #include "stdafx.h"
 #include "Monster.h"
 
-int CMonster::GetHP() const
+CMonster::CMonster()
+	: m_iClass(0),
+	  m_iHP(0),
+	  m_iAttack(0)
 {
-	return m_iHP;
 }
 
-int CMonster::GetAttack() const
+CMonster::CMonster(int _iClass)
 {
-	return m_iAttack;
-}
-
-void CMonster::InitMonster(int _iInput)
-{
-	switch (_iInput)
+	switch (_iClass)
 	{
 	case LOW:
 		m_iClass = LOW;
@@ -34,6 +31,21 @@ void CMonster::InitMonster(int _iInput)
 		break;
 	}
 }
+
+CMonster::~CMonster()
+{
+}
+
+int CMonster::GetHP() const
+{
+	return m_iHP;
+}
+
+int CMonster::GetAttack() const
+{
+	return m_iAttack;
+}
+
 
 void CMonster::Attack(int _iPlayerAttack)
 {

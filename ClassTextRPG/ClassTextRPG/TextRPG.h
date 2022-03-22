@@ -5,8 +5,12 @@
 class CTextRPG
 {
 private:
-	CPlayer* m_pPlayer = nullptr;
-	CMonster* m_pMonster = nullptr;
+	CPlayer* m_pPlayer;
+	CMonster* m_pMonster;
+
+public:
+	CTextRPG();
+	~CTextRPG();
 
 public:
 	void ChooseMonster();
@@ -17,15 +21,9 @@ public:
 	void LoadPlayer();
 	
 public:
-	void ChoosePlayer();
-	bool Update();
-	void AllRelease();
-
-public:
-	void InitPlayer(int _iInput);
-	void InitMonster(int _iInput);
-	void MonsterRelease();
-	void PlayerRelease();
+	void Init();
+	void Update();
+	void Release();
 
 public:
 	void MainFrame();

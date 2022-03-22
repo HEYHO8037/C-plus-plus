@@ -4,9 +4,13 @@
 class CMainProgram
 {
 private:
-	int m_iCount = 0;
-	int m_iMaxCount = 3;
-	CStudent* m_pStudent = nullptr;
+	int m_iCount;
+	int m_iMaxCount;
+	CStudent* m_pStudent;
+
+public:
+	CMainProgram();
+	~CMainProgram();
 
 public:
 	void InitStudent(int _iMaxCount = 3);
