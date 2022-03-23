@@ -4,7 +4,7 @@
 CTextRPG::CTextRPG()
 	: m_pPlayer(nullptr),
 	  m_pMonster(nullptr)
-{
+{ 
 }
 
 CTextRPG::~CTextRPG()
