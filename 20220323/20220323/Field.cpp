@@ -4,7 +4,8 @@
 
 CField::CField()
 	: m_pMonster(nullptr),
-	  m_pPlayer(nullptr)
+	  m_pPlayer(nullptr),
+	  m_pStore(nullptr)
 {
 }
 
@@ -39,23 +40,39 @@ void CField::Fight()
 			m_pMonster->AttackPlayer(m_pPlayer->GetAttack());
 			if (0 >= m_pMonster->GetHP())
 			{
-				Release();
+				SAFE_DELETE(m_pMonster);
 				break;
 			}
 			else if (0 >= m_pPlayer->GetHP())
 			{
+				system("cls");
+				cout << "플레이어가 사망했습니다." << endl;
 				break;
 			}
 		}
 		else if (2 == iInput)
 		{
-			Release();
+			SAFE_DELETE(m_pMonster);
 			break;
 		}
 		else
 		{
 			continue;
 		}
+	}
+}
+
+void CField::InitStore()
+{
+	m_pStore = new CStore;
+}
+
+void CField::ReleaseStore()
+{
+	if (m_pStore)
+	{
+		delete m_pStore;
+		m_pStore = nullptr;
 	}
 }
 
@@ -71,7 +88,7 @@ void CField::Update()
 
 		m_pPlayer->RenderPlayer();
 
-		cout << "1. 사냥터, 2. 저장, 3. 종료" << endl;
+		cout << "1. 사냥터, 2.상점 3. 저장, 4. 종료" << endl;
 		cin >> iInput;
 
 		if (1 == iInput)
@@ -90,10 +107,17 @@ void CField::Update()
 		}
 		else if (2 == iInput)
 		{
+			InitStore();
+			m_pStore->SetPlayer(m_pPlayer);
+			m_pStore->RenderStore();
+			ReleaseStore();
+		}
+		else if (3 == iInput)
+		{
 			m_pPlayer->SavePlayer();
 			continue;
 		}
-		else if (3 == iInput)
+		else if (4 == iInput)
 		{
 			return;
 		}
@@ -107,4 +131,6 @@ void CField::Update()
 void CField::Release()
 {
 	SAFE_DELETE(m_pMonster);
+	m_pPlayer = nullptr;
+	ReleaseStore();
 }

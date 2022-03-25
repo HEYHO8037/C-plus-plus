@@ -16,6 +16,17 @@ CPlayer::~CPlayer()
 
 }
 
+void CPlayer::SetAttack(int iAttack)
+{
+	m_iAttack = iAttack;
+}
+
+void CPlayer::SetHP(int iHP)
+{
+	m_iMaxHP = iHP;
+	m_iCurrentHP = iHP;
+}
+
 int CPlayer::GetAttack() const
 {
 	return m_iAttack;;
@@ -165,8 +176,5 @@ void CPlayer::SavePlayer()
 
 void CPlayer::HealPlayer()
 {
-	system("cls");
-	cout << "플레이어가 사망했습니다." << endl;
-
 	m_iCurrentHP = m_iMaxHP;
 }

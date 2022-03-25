@@ -25,6 +25,9 @@
     <Filter Include="04_MainGame">
       <UniqueIdentifier>{acafa172-36ac-46b0-aee2-da827c1151fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05_Store">
+      <UniqueIdentifier>{98436b74-0612-440a-9a53-1816ac417190}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -51,6 +54,9 @@
     <ClInclude Include="Define.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Store.h">
+      <Filter>05_Store</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -70,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="MainGame.cpp">
       <Filter>04_MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Store.cpp">
+      <Filter>05_Store</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

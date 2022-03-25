@@ -13,17 +13,21 @@ private:
 	int m_iClass;
 
 public:
+	void SetAttack(int iAttack);
+	void SetHP(int iHP);
+
+public:
 	int GetAttack() const;
 	int GetHP() const;
 
 private:
 	void LoadPlayer();
-	void HealPlayer();
 
 public:
 	void RenderPlayer();
 	void AttackMonster(int _iMonsterAttack);
 	void InitPlayer();
 	void SavePlayer();
+	void HealPlayer();
 };
 
