@@ -2,6 +2,7 @@
 
 int main(void)
 {
+
 	// 1. 오늘 풀이한 코드를 기반으로 동적할당으로 Text RPG 만들기
 	Player* player = nullptr;
 	Monster* monster = nullptr;
