@@ -9,7 +9,6 @@ CField::CField()
 {
 }
 
-
 CField::~CField()
 {
 }
@@ -154,6 +153,7 @@ void CField::Update()
 		}
 		else if (4 == iInput)
 		{
+			Release();
 			return;
 		}
 		else
