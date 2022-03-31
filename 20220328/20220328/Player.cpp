@@ -19,7 +19,6 @@ CPlayer::CPlayer(int _iAttack, int _iCurrentHP, int _iMaxHP)
 
 CPlayer::~CPlayer()
 {
-
 }
 
 void CPlayer::SetAttack(int iAttack)

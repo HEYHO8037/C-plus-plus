@@ -16,7 +16,7 @@ public:
 	int GetHP() const;;
 
 public:
-	virtual void RenderMonster();
+	virtual void RenderMonster() = 0;
 	void AttackPlayer(int _iPlayerAttack);
 };
 

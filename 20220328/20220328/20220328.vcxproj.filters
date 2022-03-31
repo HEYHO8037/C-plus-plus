@@ -123,4 +123,7 @@
       <Filter>01_Monster\00_Type</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
 </Project>
