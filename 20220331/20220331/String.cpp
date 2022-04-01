@@ -7,7 +7,7 @@ CString::CString()
 {
 }
 
-CString::CString(CString & otherString)
+CString::CString(const CString & otherString)
 {
 	m_strSize = otherString.m_strSize;
 
