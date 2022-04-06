@@ -24,7 +24,11 @@ CPlayer::CPlayer(int _iAttack, int _iCurrentHP, int _iMaxHP)
 
 CPlayer::~CPlayer()
 {
-	delete m_Inven;
+	if (m_Inven)
+	{
+		delete m_Inven;
+		m_Inven = nullptr;
+	}
 }
 
 void CPlayer::SetAttack(int iAttack)
@@ -83,23 +87,75 @@ void CPlayer::AttackMonster(int _iMonsterAttack)
 void CPlayer::LoadPlayer()
 {
 	FILE* pFile = nullptr;
+
 	CPlayer GetPlayer;
+	delete GetPlayer.m_Inven;
+	GetPlayer.m_Inven = nullptr;
+
+	_tagItemType m_iItemType[5];
+	int m_iItemAttack[5];
+	int m_iItemArmor[5];
+	int m_iItemPortion[5];
+	char m_ItemName[5][100] = { 0 };
+
 
 	errno_t err = fopen_s(&pFile, "../Data/Save.txt", "rb");
 	if (NULL == err)
 	{
 		fread(&GetPlayer, sizeof(CPlayer), 1, pFile);
+		fread(&m_ItemName, sizeof(m_ItemName), 1, pFile);
+		fread(&m_iItemType, sizeof(m_iItemType), 1, pFile);
+		fread(&m_iItemAttack, sizeof(m_iItemAttack), 1, pFile);
+		fread(&m_iItemArmor, sizeof(m_iItemArmor), 1, pFile);
+		fread(&m_iItemPortion, sizeof(m_iItemPortion), 1, pFile);
+
 		fclose(pFile);
 
 		m_iAttack = GetPlayer.m_iAttack;
 		m_iMaxHP = GetPlayer.m_iMaxHP;
 		m_iCurrentHP = GetPlayer.m_iCurrentHP;
 
+		for (int i = 0; 5 > i; ++i)
+		{
+			string saveString = m_ItemName[i];
+			m_Inven->GetItemInven().push_back(new ITEM(saveString, m_iItemType[i], m_iItemAttack[i], m_iItemArmor[i], m_iItemPortion[i]));
+		}
 	}
 	else
 	{
 		cout << "파일 불러오기를 실패했습니다." << endl;
 		system("pause");
+	}
+
+	GetPlayer.m_Inven = nullptr;
+}
+
+classType CPlayer::FindClass()
+{
+	FILE* pFile = nullptr;
+	CPlayer GetPlayer;
+	delete GetPlayer.m_Inven;
+
+	errno_t err = fopen_s(&pFile, "../Data/Save.txt", "rb");
+	if (NULL == err)
+	{
+		fread(&GetPlayer, sizeof(CPlayer), 1, pFile);
+	}
+
+	if (GetPlayer.m_classType == WARRIOR)
+	{
+		GetPlayer.m_Inven = nullptr;
+		return WARRIOR;
+	}
+	else if (GetPlayer.m_classType == WIZARD)
+	{
+		GetPlayer.m_Inven = nullptr;
+		return WIZARD;
+	}
+	else
+	{
+		GetPlayer.m_Inven = nullptr;
+		return THIEF;
 	}
 }
 
@@ -110,6 +166,25 @@ void CPlayer::SavePlayer()
 	FILE* pFile = nullptr;
 	CPlayer savePlayer;
 
+	int m_iItemAttack[5];
+	int m_iItemArmor[5];
+	int m_iItemPortion[5];
+	_tagItemType m_iItemType[5];
+	char m_ItemName[5][100] = { 0 };
+
+	for (int i = 0; i < m_Inven->GetItemInven().size(); ++i)
+	{
+		m_iItemAttack[i] = m_Inven->GetItemInven()[i]->iAttack;
+		m_iItemArmor[i] = m_Inven->GetItemInven()[i]->iArmor;
+		m_iItemPortion[i] = m_Inven->GetItemInven()[i]->iPortion;
+		m_iItemType[i] = m_Inven->GetItemInven()[i]->eType;
+
+		for (int j = 0; j < m_Inven->GetItemInven()[i]->strName.size(); ++j)
+		{
+			m_ItemName[i][j] = m_Inven->GetItemInven()[i]->strName.c_str()[j];
+		}
+	}
+
 	savePlayer.m_iAttack = m_iAttack;
 	savePlayer.m_iCurrentHP = m_iCurrentHP;
 	savePlayer.m_iMaxHP = m_iMaxHP;
@@ -118,6 +193,11 @@ void CPlayer::SavePlayer()
 	if (NULL == err)
 	{
 		fwrite(&savePlayer, sizeof(CPlayer), 1, pFile);
+		fwrite(&m_ItemName, sizeof(m_ItemName), 1, pFile);
+		fwrite(&m_iItemType, sizeof(m_iItemType), 1, pFile);
+		fwrite(&m_iItemAttack, sizeof(m_iItemAttack), 1, pFile);
+		fwrite(&m_iItemArmor, sizeof(m_iItemArmor), 1, pFile);
+		fwrite(&m_iItemPortion, sizeof(m_iItemPortion), 1, pFile);
 		fclose(pFile);
 		cout << "데이터 저장 성공" << endl;
 		system("pause");

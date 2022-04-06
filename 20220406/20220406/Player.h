@@ -11,6 +11,7 @@ public:
 	~CPlayer();
 
 protected:
+	classType m_classType;
 	int m_iAttack;
 	int m_iCurrentHP;
 	int m_iMaxHP;
@@ -35,5 +36,6 @@ public:
 	void SavePlayer();
 	void HealPlayer();
 	void LoadPlayer();
+	classType FindClass();
 };
 

@@ -10,6 +10,13 @@ enum _tagItemType
 	PORTION
 };
 
+enum classType
+{
+	WARRIOR,
+	WIZARD,
+	THIEF
+};
+
 typedef struct _tagItem
 {
 	string strName;

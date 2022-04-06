@@ -39,7 +39,26 @@ void CMainGame::InitPlayer()
 			break;
 
 		case 4:
+		{
 			m_pPlayer = new CPlayer;
+			classType saveType = m_pPlayer->FindClass();
+
+			if (saveType == WARRIOR)
+			{
+				delete m_pPlayer;
+				m_pPlayer = new CWarrior;
+			}
+			else if (saveType == WIZARD)
+			{
+				delete m_pPlayer;
+				m_pPlayer = new CWizard;
+			}
+			else
+			{
+				delete m_pPlayer;
+				m_pPlayer = new CThief;
+			}
+
 			m_pPlayer->LoadPlayer();
 
 			if (!m_pPlayer->GetAttack())
@@ -48,6 +67,7 @@ void CMainGame::InitPlayer()
 			}
 
 			break;
+		}
 
 		case 5:
 			return;

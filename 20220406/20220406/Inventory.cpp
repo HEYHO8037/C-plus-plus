@@ -40,6 +40,9 @@ CInventory::~CInventory()
 
 		m_vecItem.clear();
 	}
+
+	m_vecItem.clear();
+	m_pPlayer = nullptr;
 }
 
 vector<PITEM>& CInventory::GetItemInven()

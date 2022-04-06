@@ -13,6 +13,7 @@ void CWarrior::RenderPlayer()
 CWarrior::CWarrior()
 	: CPlayer(10, 200, 200)
 {
+	m_classType = WARRIOR;
 }
 
 

@@ -12,6 +12,7 @@ void CWizard::RenderPlayer()
 CWizard::CWizard()
 	: CPlayer(100, 100, 100)
 {
+	m_classType = WIZARD;
 }
 
 

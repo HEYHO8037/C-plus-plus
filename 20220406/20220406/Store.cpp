@@ -89,6 +89,13 @@ PITEM CStore::WeaponBuy()
 
 		if (1 == iInput)
 		{
+			if (m_pPlayer->GetInven()->GetItemInven().size() == 5)
+			{
+				cout << "인벤토리가 차서 구매를 할수가 없습니다." << endl;
+				system("pause");
+				break;
+			}
+
 			cout << "칼을 구매하셨습니다." << endl;
 			PITEM pKnife = new ITEM("칼", WEAPON, 10, 0, 0);
 			system("pause");
@@ -96,6 +103,13 @@ PITEM CStore::WeaponBuy()
 		}
 		else if (2 == iInput)
 		{
+			if (m_pPlayer->GetInven()->GetItemInven().size() == 5)
+			{
+				cout << "인벤토리가 차서 구매를 할수가 없습니다." << endl;
+				system("pause");
+				break;
+			}
+
 			cout << "활을 구매하셨습니다." << endl;
 			PITEM pBow = new ITEM("활", WEAPON, 25, 0, 0);
 			system("pause");
@@ -103,6 +117,13 @@ PITEM CStore::WeaponBuy()
 		}
 		else if (3 == iInput)
 		{
+			if (m_pPlayer->GetInven()->GetItemInven().size() == 5)
+			{
+				cout << "인벤토리가 차서 구매를 할수가 없습니다." << endl;
+				system("pause");
+				break;
+			}
+
 			cout << "총을 구매하셨습니다." << endl;
 			PITEM pGun = new ITEM("총", WEAPON, 50, 0, 0);
 			system("pause");
@@ -136,6 +157,13 @@ PITEM CStore::ArmorBuy()
 
 		if (1 == iInput)
 		{
+			if (m_pPlayer->GetInven()->GetItemInven().size() == 5)
+			{
+				cout << "인벤토리가 차서 구매를 할수가 없습니다." << endl;
+				system("pause");
+				break;
+			}
+
 			cout << "하급 방어구를 구매하셨습니다." << endl;
 			PITEM pLowArmor = new ITEM("하급 방어구", ARMOR, 0, 10, 0);
 			system("pause");
@@ -143,6 +171,13 @@ PITEM CStore::ArmorBuy()
 		}
 		else if (2 == iInput)
 		{
+			if (m_pPlayer->GetInven()->GetItemInven().size() == 5)
+			{
+				cout << "인벤토리가 차서 구매를 할수가 없습니다." << endl;
+				system("pause");
+				break;
+			}
+
 			cout << "중급 방어구를 구매하셨습니다." << endl;
 			PITEM pMiddleArmor = new ITEM("중급 방어구", ARMOR, 0, 25, 0);
 			system("pause");
@@ -151,6 +186,13 @@ PITEM CStore::ArmorBuy()
 		}
 		else if (3 == iInput)
 		{
+			if (m_pPlayer->GetInven()->GetItemInven().size() == 5)
+			{
+				cout << "인벤토리가 차서 구매를 할수가 없습니다." << endl;
+				system("pause");
+				break;
+			}
+
 			cout << "상급 방어구를 구매하셨습니다." << endl;
 			PITEM pHighArmor = new ITEM("상급 방어구", ARMOR, 0, 50, 0);
 			system("pause");
@@ -184,6 +226,13 @@ PITEM CStore::PortionBuy()
 
 		if (1 == iInput)
 		{
+			if (m_pPlayer->GetInven()->GetItemInven().size() == 5)
+			{
+				cout << "인벤토리가 차서 구매를 할수가 없습니다." << endl;
+				system("pause");
+				break;
+			}
+
 			cout << "체력 물약을 구매하셨습니다." << endl;
 			PITEM pHPportion = new ITEM("체력물약", PORTION, 0, 0, m_pPlayer->GetMaxHP());
 			system("pause");

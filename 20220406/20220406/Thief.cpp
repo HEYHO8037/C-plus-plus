@@ -12,6 +12,7 @@ void CThief::RenderPlayer()
 CThief::CThief()
 	: CPlayer(20, 50, 50)
 {
+	m_classType = THIEF;
 }
 
 
