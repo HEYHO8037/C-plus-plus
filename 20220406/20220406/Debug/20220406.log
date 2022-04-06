@@ -1,0 +1,4 @@
+﻿  Player.cpp
+c:\users\haeho\desktop\c & c++\20220406\20220406\player.cpp(129): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  20220406.vcxproj -> C:\Users\haeho\Desktop\C & C++\20220406\Debug\20220406.exe
+  20220406.vcxproj -> C:\Users\haeho\Desktop\C & C++\20220406\Debug\20220406.pdb (Full PDB)
