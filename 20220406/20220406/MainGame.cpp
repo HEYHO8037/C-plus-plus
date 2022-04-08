@@ -8,7 +8,6 @@ CMainGame::CMainGame()
 {
 }
 
-
 CMainGame::~CMainGame()
 {
 }
@@ -78,7 +77,6 @@ void CMainGame::InitPlayer()
 
 		break;
 	}
-
 }
 
 void CMainGame::Initalize()
@@ -86,8 +84,7 @@ void CMainGame::Initalize()
 	m_pField = new CField;
 	m_pPlayer = new CPlayer;
 
-	InitPlayer();
-	
+	InitPlayer();	
 }
 
 void CMainGame::Update()

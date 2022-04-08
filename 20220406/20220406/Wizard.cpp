@@ -15,7 +15,6 @@ CWizard::CWizard()
 	m_classType = WIZARD;
 }
 
-
 CWizard::~CWizard()
 {
 }

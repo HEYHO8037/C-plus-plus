@@ -83,7 +83,6 @@ void CPlayer::AttackMonster(int _iMonsterAttack)
 	}
 }
 
-
 void CPlayer::LoadPlayer()
 {
 	FILE* pFile = nullptr;
@@ -158,7 +157,6 @@ classType CPlayer::FindClass()
 		return THIEF;
 	}
 }
-
 
 
 void CPlayer::SavePlayer()

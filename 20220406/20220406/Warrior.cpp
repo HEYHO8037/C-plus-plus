@@ -9,13 +9,11 @@ void CWarrior::RenderPlayer()
 	cout << "°ø°Ý·Â : " << m_iAttack << endl;
 }
 
-
 CWarrior::CWarrior()
 	: CPlayer(10, 200, 200)
 {
 	m_classType = WARRIOR;
 }
-
 
 CWarrior::~CWarrior()
 {

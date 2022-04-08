@@ -15,7 +15,6 @@ CThief::CThief()
 	m_classType = THIEF;
 }
 
-
 CThief::~CThief()
 {
 }

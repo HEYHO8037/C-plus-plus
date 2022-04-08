@@ -5,6 +5,7 @@
 
 CInventory::CInventory()
 {
+	m_vecItem.reserve(5);
 }
 
 CInventory::CInventory(const CInventory & inven)
@@ -37,7 +38,6 @@ CInventory::~CInventory()
 		vector<PITEM>::iterator iterEnd = m_vecItem.end();
 
 		for_each(iter, iterEnd, DestroyItem());
-
 		m_vecItem.clear();
 	}
 
@@ -89,7 +89,7 @@ void CInventory::SelectItem()
 	vector<PITEM>::iterator iter = m_vecItem.begin();
 	vector<PITEM>::iterator iterEnd = m_vecItem.end();
 
-	for (iter; iter != iterEnd; ++iter)
+	for (iter; iter != iterEnd; )
 	{
 		system("cls");
 		cout << "Player의 인벤토리" << endl;
@@ -122,6 +122,7 @@ void CInventory::SelectItem()
 			{
 				delete *iter;
 				iter = m_vecItem.erase(iter);
+				iterEnd = m_vecItem.end();
 			}
 			else
 			{
@@ -133,7 +134,7 @@ void CInventory::SelectItem()
 		}
 		else if(2 == iInput)
 		{
-			continue;
+			++iter;
 		}
 		else
 		{
